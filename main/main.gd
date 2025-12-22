@@ -99,6 +99,7 @@ func answer(number: int, button: Button):
 
 func win():
 	unlocked_hammies += 1
+	unlocked_hammies = min(unlocked_hammies, 10)
 	%UnlockedTR.texture = hammy_sprites[unlocked_hammies - 1]
 	save_to_localstorage()
 	# Get the size of the main viewport
