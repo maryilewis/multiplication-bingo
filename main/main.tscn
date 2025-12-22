@@ -1,0 +1,179 @@
+[gd_scene load_steps=4 format=3 uid="uid://cicsbqh2mmhy1"]
+
+[ext_resource type="Script" uid="uid://bnk4qn1bgsxr" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Theme" uid="uid://b5dsamwf1fv4i" path="res://theme/theme.tres" id="1_pjrb6"]
+[ext_resource type="Texture2D" uid="uid://b6a84c5bgp0dh" path="res://aseprite/hammies/hammy sprite sheet1.png" id="3_xwkvk"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pjrb6")
+script = ExtResource("1_53q0u")
+
+[node name="Confetti" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Confetti"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(589, 12)
+emitting = false
+amount = 32
+texture = ExtResource("3_xwkvk")
+one_shot = true
+randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -120.0
+offset_right = 265.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="StartMenu" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Game Title" type="Label" parent="PanelContainer/MarginContainer/StartMenu"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Multiplication Bingo!"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="PanelContainer/MarginContainer/StartMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = -14
+theme_override_font_sizes/font_size = 32
+text = "Select the multiplication tables you want to practice."
+autowrap_mode = 2
+
+[node name="LevelButtons" type="GridContainer" parent="PanelContainer/MarginContainer/StartMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/StartMenu"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="CritterButton" type="Button" parent="PanelContainer/MarginContainer/StartMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "View Critter Collection"
+
+[node name="Game" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BingoGrid" type="GridContainer" parent="PanelContainer/MarginContainer/Game"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/Game/BingoGrid"]
+layout_mode = 2
+
+[node name="Question" type="Label" parent="PanelContainer/MarginContainer/Game"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="CritterCollection" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/CritterCollection"]
+layout_mode = 2
+text = "Critter Collection"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/CritterCollection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Collect all 10!"
+
+[node name="CritterList" type="GridContainer" parent="PanelContainer/MarginContainer/CritterCollection"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/CritterCollection"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"
+
+[node name="WinPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -20.0
+offset_right = 33.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WinPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You win!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "You unlocked:"
+
+[node name="UnlockedTR" type="TextureRect" parent="WinPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_xwkvk")
+
+[node name="Play Again" type="Button" parent="WinPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play again"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/StartMenu/MarginContainer/CritterButton" to="." method="show_critters"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/CritterCollection/BackButton" to="." method="reset"]
+[connection signal="pressed" from="WinPanel/MarginContainer/VBoxContainer/Play Again" to="." method="reset"]
