@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cicsbqh2mmhy1"]
+[gd_scene load_steps=7 format=3 uid="uid://cicsbqh2mmhy1"]
 
 [ext_resource type="Script" uid="uid://bnk4qn1bgsxr" path="res://main/main.gd" id="1_53q0u"]
 [ext_resource type="Theme" uid="uid://b5dsamwf1fv4i" path="res://theme/theme.tres" id="1_pjrb6"]
+[ext_resource type="Texture2D" uid="uid://btvt5r0n2kf5g" path="res://aseprite/background2.png" id="3_c651c"]
 [ext_resource type="Texture2D" uid="uid://b6a84c5bgp0dh" path="res://aseprite/hammies/hammy sprite sheet1.png" id="3_xwkvk"]
+[ext_resource type="Texture2D" uid="uid://bb4tptkwdrjk1" path="res://aseprite/icons/left-arrow.svg" id="5_3wy1v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wy1v"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.8, 0.835294, 0.682353, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -13,6 +20,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pjrb6")
 script = ExtResource("1_53q0u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c651c")
+stretch_mode = 1
 
 [node name="Confetti" type="Node2D" parent="."]
 
@@ -80,12 +97,22 @@ theme_override_constants/margin_top = 12
 [node name="CritterButton" type="Button" parent="PanelContainer/MarginContainer/StartMenu/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "View Critter Collection"
 
 [node name="Game" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Game"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Back"
+icon = ExtResource("5_3wy1v")
+expand_icon = true
 
 [node name="BingoGrid" type="GridContainer" parent="PanelContainer/MarginContainer/Game"]
 unique_name_in_owner = true
@@ -95,7 +122,13 @@ columns = 5
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/Game/BingoGrid"]
 layout_mode = 2
 
-[node name="Question" type="Label" parent="PanelContainer/MarginContainer/Game"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wy1v")
+
+[node name="Question" type="Label" parent="PanelContainer/MarginContainer/Game/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
@@ -175,5 +208,6 @@ layout_mode = 2
 text = "Play again"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/StartMenu/MarginContainer/CritterButton" to="." method="show_critters"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Game/Button" to="." method="reset"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/CritterCollection/BackButton" to="." method="reset"]
 [connection signal="pressed" from="WinPanel/MarginContainer/VBoxContainer/Play Again" to="." method="reset"]

@@ -15,6 +15,14 @@ run/main_scene="uid://cicsbqh2mmhy1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=700
+window/size/viewport_height=700
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=6
+
 [gui]
 
 theme/custom_font="uid://du0sa3j6my55s"
